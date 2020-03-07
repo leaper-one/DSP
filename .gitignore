@@ -1,0 +1,8 @@
+.vscode/settings.json
+__pycache__/assets.cpython-37.pyc
+__pycache__/fundmethood.cpython-37.pyc
+__pycache__/mixin_api.cpython-37.pyc
+__pycache__/mixin_config.cpython-37.pyc
+__pycache__/pressone_config.cpython-37.pyc
+mixin_config.py
+pressone_config.py

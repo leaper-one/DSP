@@ -67,7 +67,7 @@ while True:
                             "type": "order_slice",
                             "user_id":order_slice_org["user_id"],
                             "order_id": order_slice_org["order_id"],
-                            "order_hash":order_slice_org["order_hash"]
+                            "order_hash":order_slice_org["order_hash"],
                             "data": osl
                         }
                         random_DS = random.choice(DS_list)
@@ -82,6 +82,10 @@ while True:
             #TODO: 查找数据库中相同的订单号的切片文件
             Slice = Query()
             r = order_slice_db.search(Slice.id)
+            if r == []:
+                order_slice_db.insert(data)
+            else:
+                if 
             data.get('order_id')
             #TODO: 求公共子集
             #TODO: 判断 BFT 结果

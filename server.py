@@ -85,7 +85,7 @@ while True:
             if r == []:
                 order_slice_db.insert(data)
             else:
-                if 
+                pass
             data.get('order_id')
             #TODO: 求公共子集
             #TODO: 判断 BFT 结果

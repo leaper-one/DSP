@@ -12,7 +12,9 @@ Every json need to be packed for UDP.
         "file_type": mine,
         "file_hash: str(md5),
         "file_slices_hash": list
-    }
+    },
+    "date":str,
+    "order_hash":str
 }
 `  
 # order_slice
@@ -20,7 +22,9 @@ Every json need to be packed for UDP.
 
 `{
     "type": "order_slice",
-    "id": uuid,
+    "user_id": uuid,
+    "order_id": uuid,
+    "order_hash":str,
     "data": str
 }
 `  

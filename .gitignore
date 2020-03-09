@@ -6,3 +6,9 @@ __pycache__/mixin_config.cpython-37.pyc
 __pycache__/pressone_config.cpython-37.pyc
 mixin_config.py
 pressone_config.py
+test/__pycache__/fundmethood.cpython-37.pyc
+.vscode/launch.json
+order.json
+order_slice.json
+test/fundmethood.py
+test/test1.py

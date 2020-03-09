@@ -59,7 +59,7 @@ while True:
                     "order_hash":"str"
                 }#仅为测试格式,需要转换成 stander_form.md 中的标准格式
                 order_db.insert(order_slice_org)
-                order_slice_list = fm.slice_pack(order_slice_org,len(DS_list)*(2/3)+1,len(DS_list))
+                order_slice_list = fm.slice_pack(order_slice_org,len(DS_list)*2//3+1,len(DS_list))
                 print(order_slice_list)
                 for i in range(len(DS_list)*2):#向其他云节点广播两轮切片信息
                     for osl in order_slice_list:

@@ -19,7 +19,7 @@ def genTrace():
     return str(uuid.uuid1())
 
 def slice_pack(data,min,max):#data:str,min:int,max:int
-    return PlaintextToHexSecretSharer.split_secret(base64.b64encode(umsgpack.packb(data).byte),min,max)
+    return PlaintextToHexSecretSharer.split_secret(base64.b64encode(umsgpack.packb(data)).decode('UTF-8'),min,max)
 
 def recover_slice(shares):#shares:List
     return SecretSharer.recover_secret(shares)

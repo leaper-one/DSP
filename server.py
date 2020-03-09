@@ -50,7 +50,7 @@ while True:
                     "type": "order",
                     "user_id": data['user_id'],
                     "order_id": data['order_id'],
-                    "data": {
+                    "data": {#TODO:需更改
                         "file_type": "mine",
                         "file_hash": "str(md5)",
                         "file_slices_hash": "list"
@@ -80,6 +80,8 @@ while True:
             print('收到 '+data.get('id')+' 订单切片')
             #TODO: 收集相同 uuid 的切片，计算 BFT 结果，储存或抛弃、还原 order
             #TODO: 查找数据库中相同的订单号的切片文件
+            Slice = Query()
+            r = order_slice_db.search(Slice.id)
             data.get('order_id')
             #TODO: 求公共子集
             #TODO: 判断 BFT 结果

@@ -18,11 +18,15 @@ from secretsharing import SecretSharer, PlaintextToHexSecretSharer
 def genTrace():
     return str(uuid.uuid1())
 
-def slice_pack(data,min,max):#data:str,min:int,max:int
-    return PlaintextToHexSecretSharer.split_secret(base64.b64encode(umsgpack.packb(data)).decode('UTF-8'),min,max)
+def slice(data,min,max):
+    return PlaintextToHexSecretSharer.split_secret(data,min,max)
 
-def recover_slice(shares):#shares:List
+def recover(shares):#shares:List
     return SecretSharer.recover_secret(shares)
 
-def unpackb_data(data):#data:str
-    return umsgpack.unpackb(base64.b64decode(data))
+def pack(dic):
+    return base64.b64encode(umsgpack.packb(dic)).decode('UTF-8')
+
+def unpack(pack):#data:str
+    return umsgpack.unpackb(base64.b64decode(pack))
+

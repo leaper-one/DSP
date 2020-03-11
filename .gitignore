@@ -12,3 +12,5 @@ order.json
 order_slice.json
 test/fundmethood.py
 test/test1.py
+test/__pycache__/fundmethood_test.cpython-37.pyc
+test/fundmethood_test.py

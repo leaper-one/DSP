@@ -38,6 +38,7 @@ server.bind(('127.0.0.1', 8899)) # 绑定端口:
 
 while True:
     data, addr = server.recvfrom(1024)
+    data = fm.unpack(data)
     data = json.loads(data.decode('utf-8'))
     if data.get('type') != None:
         if data.get('type') == 'order':
@@ -59,7 +60,7 @@ while True:
                     "order_hash":"str"
                 }#仅为测试格式,需要转换成 stander_form.md 中的标准格式
                 order_db.insert(order_slice_org)
-                order_slice_list = fm.slice_pack(order_slice_org,len(DS_list)*2//3+1,len(DS_list))
+                order_slice_list = fm.slice(order_slice_org,len(DS_list)*2//3+1,len(DS_list))
                 print(order_slice_list)
                 for i in range(len(DS_list)*2):#向其他云节点广播两轮切片信息
                     for osl in order_slice_list:
@@ -71,26 +72,26 @@ while True:
                             "data": osl
                         }
                         random_DS = random.choice(DS_list)
-                        client.sendto(data, (random_DS, 8899))# 广播数据:
+                        client.sendto(fm.pack(data), (random_DS, 8899))# 广播数据:
                         client.close()
             else:
                 pass
-                    
+            
         if data.get('type') == 'order_slice':
-            print('收到 '+data.get('id')+' 订单切片')
+            order_id = data['order_id']
+            print('收到 '+order_id+' 订单切片')
             #TODO: 收集相同 uuid 的切片，计算 BFT 结果，储存或抛弃、还原 order
             #TODO: 查找数据库中相同的订单号的切片文件
             Slice = Query()
-            r = order_slice_db.search(Slice.id)
+            r = order_slice_db.search(Slice.order_id)
             if r == []:
+                print('是你没玩过的船新版本')
                 order_slice_db.insert(data)
             else:
-                pass
-            data.get('order_id')
-            #TODO: 求公共子集
-            #TODO: 判断 BFT 结果
-            #TODO: 将以上整理为一个判断流程
-            
-            if len() >= 7*(2/3)+1:
-                pass
+                print('又来一份')
+                order_slice_db.insert(data)
+            a = list(set(order_slice_db.search(Slice.order_id)))#去重
+            if len(a) > len(DS_list)*2//3+1:#判断 BFT 结果，并还原
+                a = fm.recover(a)
+            #TODO:根据还原结果，进行处理    
             

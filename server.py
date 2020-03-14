@@ -1,6 +1,7 @@
 '''
 Base on python 3.7.1 in conda.
 All data pack need to follow the stander_form.md
+v0.0.1:主要完成云节点数据传递的一致性功能
 '''
 import os
 import hashlib
@@ -25,7 +26,7 @@ order_slice_db = TinyDB('order_slice.json')
 '''
 此处应当维护一张云节点 IP 列表
 '''
-DS_list = ['1','2']
+DS_list = ['0','1','2','3','4','5','6','7','8','9']
 global DS_list
 
 '''
@@ -62,7 +63,7 @@ while True:
                 order_db.insert(order_slice_org)
                 order_slice_list = fm.slice(order_slice_org,len(DS_list)*2//3+1,len(DS_list))
                 print(order_slice_list)
-                for i in range(len(DS_list)*2):#向其他云节点广播两轮切片信息
+                for i in range(len(DS_list)*2):#向其他云节点广播两轮 order_slice 信息
                     for osl in order_slice_list:
                         data = {
                             "type": "order_slice",

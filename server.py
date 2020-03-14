@@ -1,7 +1,7 @@
 '''
 Base on python 3.7.1 in conda.
 All data pack need to follow the stander_form.md
-v0.0.1:主要完成云节点数据传递的一致性功能
+v0.0.1:云节点异步共识核心完成
 '''
 import os
 import hashlib

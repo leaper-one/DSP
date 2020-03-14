@@ -52,7 +52,7 @@ while True:
                     "user_id": data['user_id'],
                     "order_id": data['order_id'],
                     "data": {#TODO:需更改
-                        "file_type": "mine",
+                        "file_type": "mine",#TODO:获取文件类型
                         "file_hash": "str(md5)",
                         "file_slices_hash": "list"
                     },
@@ -80,9 +80,7 @@ while True:
         if data.get('type') == 'order_slice':
             order_id = data['order_id']
             print('收到 '+order_id+' 订单切片')
-            #TODO: 收集相同 uuid 的切片，计算 BFT 结果，储存或抛弃、还原 order
-            #TODO: 查找数据库中相同的订单号的切片文件
-            Slice = Query()
+            Slice = Query()#查询相同 order_id 的切片文件
             r = order_slice_db.search(Slice.order_id)
             if r == []:
                 print('是你没玩过的船新版本')
@@ -93,5 +91,6 @@ while True:
             a = list(set(order_slice_db.search(Slice.order_id)))#去重
             if len(a) > len(DS_list)*2//3+1:#判断 BFT 结果，并还原
                 a = fm.recover(a)
-            #TODO:根据还原结果，进行处理    
-            
+                print(a)
+                #TODO:根据还原结果，进行处理
+                
